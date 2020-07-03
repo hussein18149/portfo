@@ -27,10 +27,11 @@ def write_to_file(data):
 def write_to_csv(data):
     with open('database.csv', mode='a') as database2:
         email = data["email"]
+        phone = data["phone"]
         subject = data["subject"]
         message = data['message']
         csv_writer = csv.writer(database2, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        csv_writer.writerow([email, subject, message])
+        csv_writer.writerow([email,phone, subject, message])
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
@@ -39,7 +40,7 @@ def submit():
         try:
             data = request.form.to_dict()
             write_to_csv(data)
-            return 'Thank you'
+            return redirect('thankyou.html')
         except:
             return 'did not save to database'
     else:
