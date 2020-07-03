@@ -1,5 +1,8 @@
-from flask import render_template, request, redirect, url_for, abort, app
+from flask import render_template, request, redirect, url_for, abort, app, Flask
 import csv
+
+app = Flask(__name__)
+
 
 @app.route('/')
 def my_home():
